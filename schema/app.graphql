@@ -1,0 +1,63 @@
+type Query {
+  getPlayers(per_page:Int!, page:Int!, sort:SortOption, sortOrder: SortOrder filter:String): [playerData]
+}
+
+
+enum SortOption {
+  firstName
+  lastName
+  id
+  squadNumber
+  chanceOfPlayingThisRound
+  chanceOfPlayingNextRound
+  totalTransfersOut
+  totalTransfersIn
+  percentSelected
+  totalPoints
+  totalMinutesPlayed
+  yellowCards
+  redCards
+  penaltiesSaved
+  penaltiesMissed
+  cost
+  timesInDreamTeam
+  inCurrentDreamTeam
+  averagePointsPerGame
+  goals
+  cleanSheets
+  goalsConceded
+}
+enum SortOrder {
+  ASC
+  DESC
+}
+
+type playerData {
+  firstName: String
+  lastName: String
+  id: Int
+  photo: String
+  squadNumber: Int
+  chanceOfPlayingThisRound: Int
+  chanceOfPlayingNextRound: Int
+  totalTransfersOut: Int
+  totalTransfersIn: Int
+  percentSelected: Float
+  form: Int
+  totalPoints: Int
+  totalMinutesPlayed: Int
+  yellowCards: Int
+  redCards: Int
+  penaltiesSaved: Int
+  penaltiesMissed: Int
+  cost: Float 
+  timesInDreamTeam: Int
+  inCurrentDreamTeam: Boolean
+  averagePointsPerGame: Float
+  saves: Int
+  influence: Float
+  goals: Int
+  assists: Int
+  cleanSheets: Int
+  goalsConceded: Int
+}
