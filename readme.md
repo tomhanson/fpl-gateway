@@ -1,0 +1,1 @@
+yarn && node index.js
