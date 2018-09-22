@@ -35,7 +35,7 @@ enum SortOrder {
 type playerData {
   firstName: String
   lastName: String
-  id: Int
+  id: ID
   photo: String
   squadNumber: Int
   chanceOfPlayingThisRound: Int
