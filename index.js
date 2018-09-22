@@ -6,6 +6,7 @@ const typeDefs = importSchema('./schema/app.graphql');
 
 function sortPlayers(sort, sortOrder) {
   return function (a, b) {
+    console.log(sort)
     const optionA = typeof a[sort] === 'number' ? a[sort] : a[sort].toUpperCase();
     const optionB = typeof b[sort] === 'number' ? b[sort] : b[sort].toUpperCase();
     if (sortOrder === 'ASC') {
@@ -35,9 +36,12 @@ const resolvers = {
     async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
       try {
         const data = await fetch(`https://fantasy.premierleague.com/drf/bootstrap-static`).then(data => data.json());
-        const sortedData = data.elements.sort(sortPlayers(sort, sortOrder));
+    
+        const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
+
         const updatedPage = page - 1;
         return sortedData.slice((updatedPage * per_page), (per_page * page));
+        // return data.elements
       }
       catch (err) {
 
@@ -69,7 +73,7 @@ const resolvers = {
     goalsConceded: 'goals_conceded'
   },
   playerData: {
-    firstName: ({ first_name }) => first_name,
+    firstName: ({first_name}) => first_name,
     lastName: ({ second_name }) => second_name,
     id: ({ id }) => id,
     squadNumber: ({ squad_number }) => squad_number,
