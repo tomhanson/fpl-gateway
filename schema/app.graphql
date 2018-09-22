@@ -1,5 +1,5 @@
 type Query {
-  getPlayers(per_page:Int!, page:Int!, sort:SortOption, sortOrder: SortOrder filter:String): [playerData]
+  getPlayers(per_page:Int!, page:Int!, sortOption:SortOption, sortOrder: SortOrder filter:String): [playerData]
 }
 
 
