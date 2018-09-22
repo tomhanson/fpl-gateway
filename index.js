@@ -36,7 +36,7 @@ const resolvers = {
     async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
       try {
         const data = await fetch(`https://fantasy.premierleague.com/drf/bootstrap-static`).then(data => data.json());
-    
+
         const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
 
         const updatedPage = page - 1;
@@ -73,7 +73,7 @@ const resolvers = {
     goalsConceded: 'goals_conceded'
   },
   playerData: {
-    firstName: ({first_name}) => first_name,
+    firstName: ({ first_name }) => first_name,
     lastName: ({ second_name }) => second_name,
     id: ({ id }) => id,
     squadNumber: ({ squad_number }) => squad_number,
