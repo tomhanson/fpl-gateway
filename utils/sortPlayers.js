@@ -1,21 +1,22 @@
 module.exports = function sortPlayers(sortOption, sortOrder) {
   return function (a, b) {
-
-    let optionA, optionB;
+    let optionA,
+      optionB;
     if (Number(a[sortOption]) !== 0) {
       if (Number(a[sortOption])) {
-        optionA = Number(a[sortOption])
+        optionA = Number(a[sortOption]);
       } else {
-        optionA = a[sortOption].toUpperCase()
+        optionA = a[sortOption].toUpperCase();
       }
     } else {
       optionA = 0;
     }
     if (Number(b[sortOption]) !== 0) {
       if (Number(b[sortOption])) {
-        optionB = Number(b[sortOption])
+        optionB = Number(b[sortOption]);
+
       } else {
-        optionB = b[sortOption].toUpperCase()
+        optionB = b[sortOption].toUpperCase();
       }
     } else {
       optionB = 0;
@@ -38,7 +39,7 @@ module.exports = function sortPlayers(sortOption, sortOrder) {
         return -1;
       }
     }
-    // equal 
+    // equal
     return 0;
-  }
-}
+  };
+};

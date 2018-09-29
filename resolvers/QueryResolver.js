@@ -1,11 +1,11 @@
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
-var query = module.exports = {
-  async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
-
+const query = module.exports = {
+  async getPlayers(_, {
+    per_page, page, sort, sortOrder, filter,
+  }) {
     try {
-
-      const data = await fetch(`https://fantasy.premierleague.com/drf/bootstrap-static`).then(data => data.json());
+      const data = await fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(data => data.json());
 
 
       const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
@@ -13,18 +13,16 @@ var query = module.exports = {
       const updatedPage = page - 1;
       return sortedData.slice((updatedPage * per_page), (per_page * page));
       // return data.elements
-    }
-    catch (err) {
+    } catch (err) {
 
     }
   },
-
-}
+};
 
 function sortPlayers(sort, sortOrder) {
-  return function (a, b) {
-    console.log(sort)
+  return (a, b) => {
     const optionA = typeof a[sort] === 'number' ? a[sort] : a[sort].toUpperCase();
+
     const optionB = typeof b[sort] === 'number' ? b[sort] : b[sort].toUpperCase();
     if (sortOrder === 'ASC') {
       if (optionA < optionB) {
@@ -41,7 +39,7 @@ function sortPlayers(sort, sortOrder) {
         return -1;
       }
     }
-    // equal 
+    // equal
     return 0;
-  }
+  };
 }
