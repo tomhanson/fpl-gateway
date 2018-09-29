@@ -4,12 +4,13 @@
 
 module.exports = {
     "env": {
-        es6: true,
-        node: true,
-        browser: true,
-        jest: true
+        "es6": true,
+        "commonjs": true,
+        "node": true,
+        "browser": true,
+        "jest": true
     },
-    "extends": ["airbnb-base", "prettier"],
+    "extends": ["airbnb", "prettier"],
     "plugins": [
         "prettier"
         "graphql"
@@ -19,14 +20,13 @@ module.exports = {
     },
     "rules": {
         "prettier/prettier": [
-
             "warn",
             {
                 "printWidth": 100,
                 "singleQuote": true,
                 "trailingComma": "es5",
                 "bracketSpacing": true,
-                "jsxBracketSameLine": false,
+                // "jsxBracketSameLine": false,
                 "parser": "babylon",
                 "semi": true
             }
@@ -49,40 +49,3 @@ module.exports = {
         ]
     }
 };
-
-// module.exports = {
-//     "parser": "babel-eslint",
-//     "extends": [
-//         "airbnb",
-//         "prettier",
-//         "prettier/react"
-//     ],
-//     "plugins": [
-//         "prettier"
-// "graphql",
-//         "flowtype"
-//     ],
-//     "rules": {
-//         "react/react-in-jsx-scope": "off",
-//         "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
-//         "prettier/prettier": [
-
-//             "warn",
-//             {
-//                 "printWidth": 100,
-//                 "singleQuote": true,
-//                 "trailingComma": "es5",
-//                 "bracketSpacing": true,
-//                 "jsxBracketSameLine": false,
-//                 "parser": "babylon",
-//                 "semi": true
-//             }
-//         ],
-//         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-//         "jsx-a11y/anchor-is-valid": [0, {
-//             "components": ["Link"],
-//             "specialLink": ["hrefLeft", "hrefRight"],
-//             "aspects": ["noHref", "invalidHref", "preferButton"]
-//         }]
-//     }
-// };

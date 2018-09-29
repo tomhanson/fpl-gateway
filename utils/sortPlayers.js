@@ -1,7 +1,6 @@
 module.exports = function sortPlayers(sortOption, sortOrder) {
-  return function (a, b) {
-    let optionA,
-      optionB;
+  return (a, b) => {
+    let optionA, optionB;
     if (Number(a[sortOption]) !== 0) {
       if (Number(a[sortOption])) {
         optionA = Number(a[sortOption]);
