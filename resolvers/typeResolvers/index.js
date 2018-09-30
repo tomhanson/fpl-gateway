@@ -47,4 +47,4 @@ module.exports = {
     cleanSheets: ({ clean_sheets }) => clean_sheets,
     goalsConceded: ({ goals_conceded }) => goals_conceded
   }
-}
+};

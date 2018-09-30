@@ -1,6 +1,7 @@
 module.exports = function sortPlayers(sortOption, sortOrder) {
   return (a, b) => {
-    let optionA, optionB;
+    let optionA;
+    let optionB;
     if (Number(a[sortOption]) !== 0) {
       if (Number(a[sortOption])) {
         optionA = Number(a[sortOption]);
@@ -13,7 +14,6 @@ module.exports = function sortPlayers(sortOption, sortOrder) {
     if (Number(b[sortOption]) !== 0) {
       if (Number(b[sortOption])) {
         optionB = Number(b[sortOption]);
-
       } else {
         optionB = b[sortOption].toUpperCase();
       }
