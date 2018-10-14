@@ -1,20 +1,5 @@
 const fetch = require('node-fetch');
-
-const query = (module.exports = {
-  async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
-    try {
-      const data = await fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(
-        data => data.json()
-      );
-
-      const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
-
-      const updatedPage = page - 1;
-      return sortedData.slice(updatedPage * per_page, per_page * page);
-      // return data.elements
-    } catch (err) {}
-  }
-});
+const memoize = require('memoizee');
 
 function sortPlayers(sort, sortOrder) {
   return (a, b) => {
@@ -40,3 +25,24 @@ function sortPlayers(sort, sortOrder) {
     return 0;
   };
 }
+
+module.exports = {
+  async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
+    try {
+      // const data = await fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res =>
+      //   res.json()
+      // );
+      const getData = () => {
+        fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res => res.json());
+      };
+      const data = await memoize(getData, { promise: true, maxAge: 1000 * 60 * 60 });
+
+      const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
+      const updatedPage = page - 1;
+      return sortedData.slice(updatedPage * per_page, per_page * page);
+      // return data.elements
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+};

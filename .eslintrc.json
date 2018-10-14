@@ -9,7 +9,7 @@
     ],
     "rules": {
         "prettier/prettier": [
-            "error"
+            "warn"
         ]
     }
 }
