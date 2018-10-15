@@ -9,7 +9,7 @@ const query = require('./resolvers/QueryResolver');
 // utils
 const sortPlayers = require('./utils/sortPlayers');
 // schema
-const typeDefs = importSchema('./schema/app.graphql');
+const typeDefs = importSchema('./schemas/app.graphql');
 
 const resolvers = {
   Query: {
