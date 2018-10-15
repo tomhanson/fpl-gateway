@@ -24,7 +24,7 @@ module.exports = function sortPlayers(sortOption, sortOrder) {
     // const optionA = Number(a[sortOption]) !== 0 ? Number(a[sortOption]) || a[sortOption].toUpperCase() || 0;
     // const optionB = Number(b[sortOption]) !== 0 ? Number(b[sortOption]) || b[sortOption].toUpperCase() || 0;
 
-    if (sortOrder === 'ASC') {
+    if (sortOrder === 'DESC') {
       if (optionA < optionB) {
         return -1;
       }
