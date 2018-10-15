@@ -6,6 +6,31 @@ type Query {
     sortOrder: SortOrder
     filter: String
   ): [PlayerData]
+  teams: [TeamData]
+}
+
+type TeamData {
+  name: String!
+  shortName: String!
+  id: Int!
+  # current_event_fixture: [[Object]]
+  # next_event_fixture: [[Object]]
+  code: Int!
+  strength: Int!
+  position: Int!
+  played: Int!
+  wins: Int!
+  losses: Int!
+  draws: Int!
+  points: Int!
+  # form: null,
+  # link_url: '',
+  HomeOverallStats: Int!
+  AwayOverallStats: Int!
+  HomeAttack: Int!
+  AwayAttack: Int!
+  HomeDefence: Int!
+  AwayDefence: Int!
 }
 
 enum SortOption {
@@ -38,31 +63,31 @@ enum SortOrder {
 }
 
 type PlayerData {
-  firstName: String
-  lastName: String
-  id: ID
-  photo: String
-  squadNumber: Int
-  chanceOfPlayingThisRound: Int
-  chanceOfPlayingNextRound: Int
-  totalTransfersOut: Int
-  totalTransfersIn: Int
-  percentSelected: Float
-  form: Int
-  totalPoints: Int
-  totalMinutesPlayed: Int
-  yellowCards: Int
-  redCards: Int
-  penaltiesSaved: Int
-  penaltiesMissed: Int
-  cost: Float
-  timesInDreamTeam: Int
-  inCurrentDreamTeam: Boolean
-  averagePointsPerGame: Float
-  saves: Int
-  influence: Float
-  goals: Int
-  assists: Int
-  cleanSheets: Int
-  goalsConceded: Int
+  firstName: String!
+  lastName: String!
+  id: ID!
+  photo: String!
+  squadNumber: Int!
+  chanceOfPlayingThisRound: Int!
+  chanceOfPlayingNextRound: Int!
+  totalTransfersOut: Int!
+  totalTransfersIn: Int!
+  percentSelected: Float!
+  form: Int!
+  totalPoints: Int!
+  totalMinutesPlayed: Int!
+  yellowCards: Int!
+  redCards: Int!
+  penaltiesSaved: Int!
+  penaltiesMissed: Int!
+  cost: Float!
+  timesInDreamTeam: Int!
+  inCurrentDreamTeam: Boolean!
+  averagePointsPerGame: Float!
+  saves: Int!
+  influence: Float!
+  goals: Int!
+  assists: Int!
+  cleanSheets: Int!
+  goalsConceded: Int!
 }
