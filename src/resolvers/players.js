@@ -26,7 +26,7 @@ function sortPlayers(sort, sortOrder) {
   };
 }
 
-const players = async (_, { per_page, page, sort, sortOrder, filter }) => {
+const players = async (_, { perPage, page, sort, sortOrder, filter }) => {
   try {
     const getData = () =>
       fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res => res.json());
@@ -34,7 +34,7 @@ const players = async (_, { per_page, page, sort, sortOrder, filter }) => {
     const data = await memoizedData();
     const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
     const updatedPage = page - 1;
-    return sortedData.slice(updatedPage * per_page, per_page * page);
+    return sortedData.slice(updatedPage * perPage, perPage * page);
     // return data.elements
   } catch (err) {
     throw new Error(err);
