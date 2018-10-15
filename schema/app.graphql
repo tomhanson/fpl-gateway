@@ -1,7 +1,12 @@
 type Query {
-  getPlayers(per_page:Int!, page:Int!, sortOption:SortOption, sortOrder: SortOrder filter:String): [playerData]
+  players(
+    per_page: Int!
+    page: Int!
+    sortOption: SortOption
+    sortOrder: SortOrder
+    filter: String
+  ): [playerData]
 }
-
 
 enum SortOption {
   firstName
@@ -50,7 +55,7 @@ type playerData {
   redCards: Int
   penaltiesSaved: Int
   penaltiesMissed: Int
-  cost: Float 
+  cost: Float
   timesInDreamTeam: Int
   inCurrentDreamTeam: Boolean
   averagePointsPerGame: Float

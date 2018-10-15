@@ -12,7 +12,7 @@ const typeDefs = importSchema('./schema/app.graphql');
 
 const resolvers = {
   Query: {
-    async getPlayers(_, { per_page, page, sortOption, sortOrder, filter }) {
+    async players(_, { per_page, page, sortOption, sortOrder, filter }) {
       try {
         const data = await fetch(`https://fantasy.premierleague.com/drf/bootstrap-static`).then(
           data => data.json()
@@ -21,7 +21,6 @@ const resolvers = {
         const sortedData = sortOption
           ? data.elements.sort(sortPlayers(sortOption, sortOrder))
           : data.elements;
-
         const updatedPage = page - 1;
         return sortedData.slice(updatedPage * per_page, per_page * page);
       } catch (err) {}
@@ -39,7 +38,12 @@ const resolvers2 = {
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
-const server = new ApolloServer({ typeDefs, resolvers, tracing: true, cacheControl: true });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  tracing: true,
+  cacheControl: true
+});
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
