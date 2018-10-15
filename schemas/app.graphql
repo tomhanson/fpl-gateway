@@ -2,7 +2,7 @@
 # import TeamData from "./teams.graphql"
 type Query {
   players(
-    per_page: Int!
+    perPage: Int!
     page: Int!
     sortOption: SortOption
     sortOrder: SortOrder
