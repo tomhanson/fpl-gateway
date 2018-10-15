@@ -13,17 +13,17 @@ const typeDefs = importSchema('./schema/app.graphql');
 
 const resolvers = {
   Query: {
-    async players(_, { per_page, page, sort, sortOrder, filter }) {
+    async players(_, { per_page: perPage, page, sortOption, sortOrder, filter }) {
       try {
         const getData = () =>
           fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res => res.json());
         const memoizedData = memoize(getData, { promise: true, maxAge: 1000 * 60 * 60 });
         const data = await memoizedData();
-        const sortedData = sort
-          ? data().elements.sort(sortPlayers(sort, sortOrder))
+        const sortedData = sortOption
+          ? data.elements.sort(sortPlayers(sortOption, sortOrder))
           : data.elements;
         const updatedPage = page - 1;
-        return sortedData.slice(updatedPage * per_page, per_page * page);
+        return sortedData.slice(updatedPage * perPage, perPage * page);
         // return data.elements
       } catch (err) {
         throw new Error(err);
