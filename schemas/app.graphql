@@ -1,4 +1,5 @@
 # import PlayerData from "./players.graphql"
+# import TeamData from "./teams.graphql"
 type Query {
   players(
     per_page: Int!
@@ -7,6 +8,7 @@ type Query {
     sortOrder: SortOrder
     filter: String
   ): [PlayerData]
+  teams: [TeamData]
 }
 
 enum SortOrder {
