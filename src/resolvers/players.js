@@ -1,5 +1,3 @@
-import memProfile from 'memoizee/profile';
-
 function sortPlayers(sort, sortOrder) {
   return (a, b) => {
     const optionA = typeof a[sort] === 'number' ? a[sort] : a[sort].toUpperCase();
@@ -25,7 +23,7 @@ function sortPlayers(sort, sortOrder) {
   };
 }
 
-const players = async (_, { per_page, page, sort, sortOrder, filter }, { getData }) => {
+const players = async (_, { per_page, page, sort, sortOrder }, { getData }) => {
   try {
     const data = await getData();
     const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
