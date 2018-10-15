@@ -27,17 +27,13 @@ function sortPlayers(sort, sortOrder) {
 }
 
 module.exports = {
-  async getPlayers(_, { per_page, page, sort, sortOrder, filter }) {
+  async players(_, { per_page, page, sort, sortOrder, filter }) {
     try {
-      // const data = await fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res =>
-      //   res.json()
-      // );
-      const getData = () => {
+      const getData = () =>
         fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res => res.json());
-      };
-      const data = await memoize(getData, { promise: true, maxAge: 1000 * 60 * 60 });
-
-      const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
+      const memoizedData = memoize(getData, { promise: true, maxAge: 1000 * 60 * 60 });
+      const data = await memoizedData();
+      const sortedData = sort ? data().elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
       const updatedPage = page - 1;
       return sortedData.slice(updatedPage * per_page, per_page * page);
       // return data.elements
