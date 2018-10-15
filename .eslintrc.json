@@ -1,0 +1,15 @@
+{
+    "extends": [
+        "airbnb-base",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier",
+        "graphql"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "warn"
+        ]
+    }
+}

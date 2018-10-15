@@ -1,28 +1,26 @@
-const { ApolloServer, gql } = require("apollo-server");
-const fetch = require("node-fetch");
-const { importSchema } = require("graphql-import");
+const { ApolloServer, gql } = require('apollo-server');
+const fetch = require('node-fetch');
+const { importSchema } = require('graphql-import');
 
-//resolvers
-const typeResolvers = require("./resolvers/typeResolvers");
-const { query } = require("./resolvers/QueryResolver");
-//utils
-const sortPlayers = require("./utils/sortPlayers");
-//schema
-const typeDefs = importSchema("./schema/app.graphql");
+// resolvers
+const typeResolvers = require('./resolvers/typeResolvers');
+const query = require('./resolvers/QueryResolver');
+// utils
+const sortPlayers = require('./utils/sortPlayers');
+// schema
+const typeDefs = importSchema('./schema/app.graphql');
 
 const resolvers = {
   Query: {
     async players(_, { per_page, page, sortOption, sortOrder, filter }) {
       try {
-        const data = await fetch(
-          `https://fantasy.premierleague.com/drf/bootstrap-static`
-        ).then(data => data.json());
+        const data = await fetch(`https://fantasy.premierleague.com/drf/bootstrap-static`).then(
+          data => data.json()
+        );
 
         const sortedData = sortOption
           ? data.elements.sort(sortPlayers(sortOption, sortOrder))
           : data.elements;
-        // console.log("data", Object.keys(data));
-        console.log("data", data["teams"]);
         const updatedPage = page - 1;
         return sortedData.slice(updatedPage * per_page, per_page * page);
       } catch (err) {}
@@ -31,7 +29,7 @@ const resolvers = {
   ...typeResolvers
 };
 
-//TODO why doesnt this work?
+// TODO why doesnt this work?
 const resolvers2 = {
   Query: query,
   ...typeResolvers
