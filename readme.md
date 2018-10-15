@@ -1,1 +1,2 @@
-yarn && node index.js
+`yarn && node index.js`
+Then voila done
