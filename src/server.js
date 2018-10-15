@@ -3,6 +3,8 @@ import { importSchema } from 'graphql-import';
 // resolvers
 import * as queryResolvers from './resolvers';
 import * as typeResolvers from './resolvers/typeResolvers';
+// context
+import getContext from './middleware/context';
 // schema
 const typeDefs = importSchema('./schemas/app.graphql');
 
@@ -19,8 +21,8 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  tracing: true,
-  cacheControl: true
+  context: getContext,
+  tracing: true
 });
 
 // This `listen` method launches a web-server.  Existing apps
