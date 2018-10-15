@@ -5,7 +5,7 @@ type Query {
     sortOption: SortOption
     sortOrder: SortOrder
     filter: String
-  ): [playerData]
+  ): [PlayerData]
 }
 
 enum SortOption {
@@ -37,7 +37,7 @@ enum SortOrder {
   DESC
 }
 
-type playerData {
+type PlayerData {
   firstName: String
   lastName: String
   id: ID
