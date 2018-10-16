@@ -1,9 +1,28 @@
-function sortPlayers(sort, sortOrder) {
+function sortPlayers(sortOption, sortOrder) {
   return (a, b) => {
-    const optionA = typeof a[sort] === 'number' ? a[sort] : a[sort].toUpperCase();
+    let optionA;
+    let optionB;
+    if (Number(a[sortOption]) !== 0) {
+      if (Number(a[sortOption])) {
+        optionA = Number(a[sortOption]);
+      } else {
+        optionA = a[sortOption].toUpperCase();
+      }
+    } else {
+      optionA = 0;
+    }
 
-    const optionB = typeof b[sort] === 'number' ? b[sort] : b[sort].toUpperCase();
-    if (sortOrder === 'ASC') {
+    if (Number(b[sortOption]) !== 0) {
+      if (Number(b[sortOption])) {
+        optionB = Number(b[sortOption]);
+      } else {
+        optionB = b[sortOption].toUpperCase();
+      }
+    } else {
+      optionB = 0;
+    }
+
+    if (sortOrder === 'DESC') {
       if (optionA < optionB) {
         return -1;
       }
@@ -23,11 +42,11 @@ function sortPlayers(sort, sortOrder) {
   };
 }
 
-const players = async (_, { per_page, page, sort, sortOrder }, { data }) => {
+const players = async (_, { perPage, page, sort, sortOrder }, { data }) => {
   try {
     const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
     const updatedPage = page - 1;
-    return sortedData.slice(updatedPage * per_page, per_page * page);
+    return sortedData.slice(updatedPage * perPage, perPage * page);
   } catch (err) {
     throw new Error(err);
   }

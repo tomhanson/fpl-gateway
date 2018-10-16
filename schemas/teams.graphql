@@ -1,0 +1,23 @@
+type TeamData {
+  name: String!
+  shortName: String!
+  id: Int!
+  # current_event_fixture: [[Object]]
+  # next_event_fixture: [[Object]]
+  code: Int!
+  strength: Int!
+  position: Int!
+  played: Int!
+  wins: Int!
+  losses: Int!
+  draws: Int!
+  points: Int!
+  # form: null,
+  # link_url: '',
+  HomeOverallStats: Int!
+  AwayOverallStats: Int!
+  HomeAttack: Int!
+  AwayAttack: Int!
+  HomeDefence: Int!
+  AwayDefence: Int!
+}
