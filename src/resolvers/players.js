@@ -23,13 +23,11 @@ function sortPlayers(sort, sortOrder) {
   };
 }
 
-const players = async (_, { per_page, page, sort, sortOrder }, { getData }) => {
+const players = async (_, { per_page, page, sort, sortOrder }, { data }) => {
   try {
-    const data = await getData();
     const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
     const updatedPage = page - 1;
     return sortedData.slice(updatedPage * per_page, per_page * page);
-    // return data.elements
   } catch (err) {
     throw new Error(err);
   }
