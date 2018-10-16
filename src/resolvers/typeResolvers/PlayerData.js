@@ -2,6 +2,7 @@
 const PlayerData = {
   firstName: ({ first_name }) => first_name,
   lastName: ({ second_name }) => second_name,
+  // position: ({ element_type }) => positions,
   id: ({ id }) => id,
   squadNumber: ({ squad_number }) => squad_number,
   chanceOfPlayingThisRound: ({ chance_of_playing_this_round }) => chance_of_playing_this_round,

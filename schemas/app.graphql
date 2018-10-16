@@ -8,9 +8,12 @@ type Query {
     sortOrder: SortOrder
     filter: String
   ): [PlayerData]
-  teams: [TeamData]
+  teams: [TeamData, Test]
 }
 
+type Test = {
+  name: String
+}
 enum SortOrder {
   ASC
   DESC

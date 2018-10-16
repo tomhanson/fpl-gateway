@@ -44,6 +44,11 @@ function sortPlayers(sortOption, sortOrder) {
 
 const players = async (_, { perPage, page, sortOption, sortOrder }, { data }) => {
   try {
+    const positions = {};
+    data.element_types.forEach(pos => {
+      positions[pos.id] = pos;
+    });
+
     const sortedData = sortOption
       ? data.elements.sort(sortPlayers(sortOption, sortOrder))
       : data.elements;
