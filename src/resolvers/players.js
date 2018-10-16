@@ -42,15 +42,13 @@ function sortPlayers(sortOption, sortOrder) {
   };
 }
 
-const players = async (_, { perPage, page, sortOption, sortOrder }, { getData }) => {
+const players = async (_, { perPage, page, sortOption, sortOrder }, { data }) => {
   try {
-    const data = await getData();
     const sortedData = sortOption
       ? data.elements.sort(sortPlayers(sortOption, sortOrder))
       : data.elements;
     const updatedPage = page - 1;
     return sortedData.slice(updatedPage * perPage, perPage * page);
-    // return data.elements
   } catch (err) {
     throw new Error(err);
   }

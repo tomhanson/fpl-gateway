@@ -10,5 +10,6 @@ const getData = async () => {
 
 export default memoize(getData, {
   profileName: 'getData',
-  maxAge: 1000 * 60 * 60
+  maxAge: 1000 * 60 * 60,
+  prefetch: true
 });

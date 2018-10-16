@@ -1,5 +1,9 @@
 import memoziedGetData from '../utils/getData';
 
-export default () => ({
-  getData: memoziedGetData
-});
+export default async () => {
+  const data = await memoziedGetData();
+
+  return {
+    data
+  };
+};
