@@ -42,9 +42,11 @@ function sortPlayers(sortOption, sortOrder) {
   };
 }
 
-const players = async (_, { perPage, page, sort, sortOrder }, { data }) => {
+const players = async (_, { perPage, page, sortOption, sortOrder }, { data }) => {
   try {
-    const sortedData = sort ? data.elements.sort(sortPlayers(sort, sortOrder)) : data.elements;
+    const sortedData = sortOption
+      ? data.elements.sort(sortPlayers(sortOption, sortOrder))
+      : data.elements;
     const updatedPage = page - 1;
     return sortedData.slice(updatedPage * perPage, perPage * page);
   } catch (err) {
