@@ -1,9 +1,9 @@
 // @flow
 
-const teams = async (_, args, { getData }) => {
+const teams = async (_, args, { data }) => {
   try {
-    const data = await getData();
-    return data.teams;
+    const res = await data;
+    return res.teams;
   } catch (err) {
     throw new Error(err);
   }

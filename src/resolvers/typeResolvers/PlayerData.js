@@ -2,7 +2,7 @@
 const PlayerData = {
   firstName: ({ first_name }) => first_name,
   lastName: ({ second_name }) => second_name,
-  // position: ({ element_type }) => positions,
+  position: ({ element_type }) => positions,
   id: ({ id }) => id,
   squadNumber: ({ squad_number }) => squad_number,
   chanceOfPlayingThisRound: ({ chance_of_playing_this_round }) => chance_of_playing_this_round,
@@ -22,7 +22,7 @@ const PlayerData = {
   averagePointsPerGame: ({ points_per_game }) => points_per_game,
   goals: ({ goals_scored }) => goals_scored,
   cleanSheets: ({ clean_sheets }) => clean_sheets,
-  goalsConceded: ({ goals_conceded }) => goals_conceded
+  goalsConceded: ({ goals_conceded }) => goals_conceded,
 };
 
 export default PlayerData;
