@@ -51,4 +51,11 @@ type PlayerData {
   assists: Int
   cleanSheets: Int
   goalsConceded: Int
+  position: PlayerPositionData
+}
+
+type PlayerPositionData {
+  id: ID!
+  singularName: String!
+  shortName: String!
 }
