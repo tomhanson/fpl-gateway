@@ -8,7 +8,6 @@
     "start": "nodemon --exec babel-node src/server.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js"
-
   },
   "keywords": [],
   "author": "",
