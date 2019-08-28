@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import memoize from 'memoizee';
 
 const getData = async () => {
-  const data = await fetch('https://fantasy.premierleague.com/drf/bootstrap-static').then(res =>
+  const data = await fetch('https://fantasy.premierleague.com/api/bootstrap-static').then(res =>
     res.json()
   );
   return data;
