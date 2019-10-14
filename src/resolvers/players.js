@@ -44,23 +44,37 @@ function sortPlayers(sortOption, sortOrder) {
 
 function addPosition(players, positions) {
   return players.map(player => {
-    const newPlayer = { ...player, position: positions[player.element_type] };
+    const newPlayer = { ...player, positions: positions[player.element_type] };
+    // console.log('newPlayer', newPlayer);
     return newPlayer;
   });
 }
 
+const getPositions = positionData =>
+  positionData.reduce((acc, item) => {
+    acc[item.id] = item;
+    return acc;
+  }, {});
+
+const getPlayers = data => {
+  const positions = getPositions(data.element_types);
+  return addPosition(data.elements, positions);
+};
+
 const players = async (_, { perPage, page, sortOption, sortOrder }, { data }) => {
   try {
-    const positions = data.element_types.reduce((acc, item) => {
-      acc[item.id] = item;
-      return acc;
-    }, {});
+    const playerData = getPlayers(data);
     const sortedData = sortOption
-      ? addPosition(data.elements, positions).sort(sortPlayers(sortOption, sortOrder))
-      : data.elements;
+      ? playerData.sort(sortPlayers(sortOption, sortOrder))
+      : playerData;
     const updatedPage = page - 1;
+    console.log(
+      'sortedData.slice(updatedPage * perPage, perPage * page)',
+      sortedData.slice(updatedPage * perPage, perPage * page)
+    );
     return sortedData.slice(updatedPage * perPage, perPage * page);
   } catch (err) {
+    console.log('err', err);
     throw new Error(err);
   }
 };
