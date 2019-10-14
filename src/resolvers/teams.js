@@ -1,5 +1,3 @@
-// @flow
-
 const teams = async (_, args, { data }) => {
   try {
     const res = await data;
