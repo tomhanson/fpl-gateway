@@ -6,7 +6,7 @@ type Query {
     page: Int!
     sortOption: SortOption
     sortOrder: SortOrder
-    filter: String
+    filter: Filter
   ): [PlayerData]
   teams: [TeamData]
 }
@@ -14,4 +14,41 @@ type Query {
 enum SortOrder {
   ASC
   DESC
+}
+
+enum FilterValue {
+  ARS
+  AVL
+  BOU
+  BHA
+  BUR
+  CHE
+  CRY
+  EVE
+  LEI
+  LIV
+  MCI
+  MUN
+  NEW
+  NOR
+  SHU
+  SOU
+  TOT
+  WAT
+  WHU
+  WOL
+  GKP
+  DEF
+  MID
+  FWD
+}
+
+enum FilterKey {
+  TEAM
+  POSITION
+}
+
+input Filter {
+  key: FilterKey
+  value: FilterValue
 }

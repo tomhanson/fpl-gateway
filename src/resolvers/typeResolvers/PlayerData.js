@@ -22,7 +22,10 @@ const PlayerData = {
   averagePointsPerGame: ({ points_per_game }) => points_per_game,
   goals: ({ goals_scored }) => goals_scored,
   cleanSheets: ({ clean_sheets }) => clean_sheets,
-  goalsConceded: ({ goals_conceded }) => goals_conceded
+  goalsConceded: ({ goals_conceded }) => goals_conceded,
+  teamCode: ({ team_code }) => team_code,
+  position: ({ position }) => position,
+  positionShortName: ({ position_short_name }) => position_short_name
 };
 
 export default PlayerData;

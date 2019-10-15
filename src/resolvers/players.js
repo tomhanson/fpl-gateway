@@ -1,8 +1,13 @@
 import sortPlayers from '../utils/sortPlayers';
+import filterPlayers from '../utils/filterPlayers';
 
 const addPosition = (players, positions) =>
   players.map(player => {
-    const newPlayer = { ...player, positionData: positions[player.element_type] };
+    const newPlayer = {
+      ...player,
+      position_short_name: positions[player.element_type].singular_name_short,
+      position: positions[player.element_type].singular_name
+    };
     return newPlayer;
   });
 
@@ -17,12 +22,18 @@ const getPlayers = data => {
   return addPosition(data.elements, positions);
 };
 
-const players = async (_, { perPage, page, sortOption, sortOrder }, { data }) => {
+const players = async (_, { perPage, page, sortOption, sortOrder, filter }, { data }) => {
   try {
+    // Get player data with positions
     const playerData = getPlayers(data);
+
+    // Apply any filters to data
+    const filteredPlayers = filterPlayers(playerData, filter);
+
+    // sort data
     const sortedData = sortOption
-      ? playerData.sort(sortPlayers(sortOption, sortOrder))
-      : playerData;
+      ? filteredPlayers.sort(sortPlayers(sortOption, sortOrder))
+      : filteredPlayers;
     const updatedPage = page - 1;
     return sortedData.slice(updatedPage * perPage, perPage * page);
   } catch (err) {
