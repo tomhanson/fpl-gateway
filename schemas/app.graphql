@@ -46,9 +46,11 @@ enum FilterValue {
 enum FilterKey {
   TEAM
   POSITION
+  VALUE
 }
 
 input Filter {
-  key: FilterKey
+  key: FilterKey!
   value: FilterValue
+  limit: Int
 }
