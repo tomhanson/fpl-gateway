@@ -22,17 +22,17 @@ const getPlayers = data => {
   return addPosition(data.elements, positions);
 };
 
-const players = async (_, { perPage, page, sortOption, sortOrder, filter }, { data }) => {
+const players = async (_, { perPage, page, sort, filter }, { data }) => {
   try {
     // Get player data with positions
     const playerData = getPlayers(data);
 
     // Apply any filters to data
     const filteredPlayers = filterPlayers(playerData, filter);
-
+    console.log('sort', sort);
     // sort data
-    const sortedData = sortOption
-      ? filteredPlayers.sort(sortPlayers(sortOption, sortOrder))
+    const sortedData = sort
+      ? filteredPlayers.sort(sortPlayers(sort.option, sort.order))
       : filteredPlayers;
     const updatedPage = page - 1;
     return sortedData.slice(updatedPage * perPage, perPage * page);
