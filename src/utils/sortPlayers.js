@@ -1,6 +1,7 @@
 const sortPlayers = (sortOption, sortOrder) => (a, b) => {
   let optionA;
   let optionB;
+
   if (Number(a[sortOption]) !== 0) {
     if (Number(a[sortOption])) {
       optionA = Number(a[sortOption]);

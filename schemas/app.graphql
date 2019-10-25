@@ -1,19 +1,18 @@
 # import PlayerData from "./players.graphql"
 # import TeamData from "./teams.graphql"
 type Query {
-  players(
-    perPage: Int!
-    page: Int!
-    sortOption: SortOption
-    sortOrder: SortOrder
-    filter: Filter
-  ): [PlayerData]
+  players(perPage: Int!, page: Int!, sort: Sort, filter: Filter): [PlayerData]
   teams: [TeamData]
 }
 
 enum SortOrder {
   ASC
   DESC
+}
+
+input Sort {
+  option: SortOption
+  order: SortOrder
 }
 
 enum FilterValue {
