@@ -1,6 +1,6 @@
 const SortOption = {
   firstName: 'first_name',
-  lastName: 'last_name',
+  lastName: 'second_name',
   squadNumber: 'squad_number',
   chanceOfPlayingThisRound: 'chance_of_playing_this_round',
   chanceOfPlayingNextRound: 'chance_of_playing_next_round',
