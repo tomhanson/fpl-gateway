@@ -29,7 +29,7 @@ const players = async (_, { perPage, page, sort, filter }, { data }) => {
 
     // Apply any filters to data
     const filteredPlayers = filterPlayers(playerData, filter);
-    console.log('sort', sort);
+
     // sort data
     const sortedData = sort
       ? filteredPlayers.sort(sortPlayers(sort.option, sort.order))
