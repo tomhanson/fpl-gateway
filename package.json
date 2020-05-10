@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/server.js",
+    "dev": "nodemon --exec babel-node src/server.js --port 6545",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js"
   },
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.0.0-rc.6",
-    "graphql": "^0.13.2",
+    "graphql": "^15.0.0",
     "graphql-import": "^0.6.0",
     "memoizee": "^0.4.14",
     "node-fetch": "^2.1.2"
